@@ -45,14 +45,14 @@
     <h1>#4471 · two causes, two tickets</h1>
     <p class="meta">
       <span>owner <b>Prabal Kumar</b></span>
-      <span class="status open">open</span>
+      <span class="status closed">closed</span>
       <span>reviewed 2026-10-29 · 0 days ago</span>
     </p>
   </header>
   <main>
     <p><a href="/kb/incidents/4471">#4471</a> was merged as one issue on subject lines alone
     (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>). Placed by tenant and booking form with
-    <code>causeOf()</code>, its reports split into two causes. Each now has a ticket of its own.</p>
+    <code>causeOf()</code>, its reports split into two causes. Each got a ticket of its own; both are now closed.</p>
 
     <aside class="warn"><p>Not one issue. The parser fix queued for #4471 does not reach the booking-v3 form reports.</p></aside>
 
@@ -91,10 +91,12 @@
     <ul>
       <li><strong><code>parser</code></strong>: <a href="https://github.com/robohere/mega_courses/issues/1">robohere/mega_courses#1</a>.
       The shared parser reads every date month first; every tenant here writes the day first.
-      Day and month come out swapped, in the app, by email and through booking-v2 forms.</li>
+      Day and month come out swapped, in the app, by email and through booking-v2 forms.
+      <strong>Fixed:</strong> <code>fix(dates): parse dd/mm for eu locales</code>.</li>
       <li><strong><code>hint</code></strong>: <a href="https://github.com/robohere/mega_courses/issues/2">robohere/mega_courses#2</a>.
       booking-v3 prints <code>MM/DD/YYYY</code> under its date field. People type month first, as told, and
-      the form reads the tenant's way, day first. Only form reports from booking-v3 tenants.</li>
+      the form reads the tenant's way, day first. Only form reports from booking-v3 tenants.
+      <strong>Won't fix:</strong> the booking-v3 form is retired.</li>
     </ul>
 
     <h2>How to read the counts</h2>
