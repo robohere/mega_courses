@@ -1,0 +1,48 @@
+---
+layout: runbook
+title: '#4471 · two causes, two tickets'
+owner: Prabal Kumar
+status: open
+reviewed: 2026-10-29
+signature: Prabal Kumar
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) was merged as one issue on subject lines alone
+([decision 0001](/kb/decisions/0001-dedupe-by-subject)). Placed by tenant and booking form with
+`causeOf()`, its reports split into two causes. Each now has a ticket of its own.
+
+<Callout kind="warn">
+Not one issue. The parser fix queued for #4471 does not reach the booking-v3 form reports.
+</Callout>
+
+## What #4471 holds
+
+<CauseTable ticket={4471} />
+
+The row the table marks "no ticket of its own" is
+[robohere/mega_courses#2](https://github.com/robohere/mega_courses/issues/2).
+
+## The tickets
+
+- **`parser`**: [robohere/mega_courses#1](https://github.com/robohere/mega_courses/issues/1).
+  The shared parser reads every date month first; every tenant here writes the day first.
+  Day and month come out swapped, in the app, by email and through booking-v2 forms.
+- **`hint`**: [robohere/mega_courses#2](https://github.com/robohere/mega_courses/issues/2).
+  booking-v3 prints `MM/DD/YYYY` under its date field. People type month first, as told, and
+  the form reads the tenant's way, day first. Only form reports from booking-v3 tenants.
+
+## How to read the counts
+
+- The export pages overlap: a report can come twice. Counts are by report id.
+- Intake's tag (`parser` / `hint`) is a guess from the reporter's browser. It disagrees with
+  the cause in both groups; place reports by tenant, not by tag.
+- The reports the desk read as a one-day move stay under `parser`, where they are filed by
+  tenant (footnote under the table).
+
+<RenderStamp {signature} />
